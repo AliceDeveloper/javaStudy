@@ -1,5 +1,8 @@
 package com.lichun.base.obj;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // 使用关键字extends，子类可以继承父类的除private属性外所有的属性。
 // 继承基本类和抽象类用extends关键字，实现接口类的继承用implements关键字。
 public class Teacher extends Person implements Hi {
@@ -32,8 +35,31 @@ public class Teacher extends Person implements Hi {
     // 接口中的方法都是公有的
     @Override
     public void sayHi() {
-        System.out.println("sayHi");
+        System.out.println("我是老师，sayHi");
     }
 
     // Java使用包package这种机制是为了防止命名冲突，访问控制，提供搜索和定位类、接口、枚举和注释等
+
+    // Java观察者模式
+    private String homework;
+    private List<HomeworkObserver> observers = new ArrayList<HomeworkObserver>();
+
+    public String getHomework() {
+        return homework;
+    }
+
+    public void setHomework(String homework) {
+        this.homework = homework;
+        notifyAllObservers();
+    }
+
+    public void attach(HomeworkObserver homeworkObserver) {
+        observers.add(homeworkObserver);
+    }
+
+    public void notifyAllObservers() {
+        for (HomeworkObserver observer : observers) {
+            observer.update();
+        }
+    }
 }
