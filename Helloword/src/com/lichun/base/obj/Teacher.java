@@ -42,7 +42,7 @@ public class Teacher extends Person implements Hi {
 
     // Java观察者模式
     private String homework;
-    private List<HomeworkObserver> observers = new ArrayList<HomeworkObserver>();
+    private List<HomeworkObserver> observers = new ArrayList<>();
 
     public String getHomework() {
         return homework;

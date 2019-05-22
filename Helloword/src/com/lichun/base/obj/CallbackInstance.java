@@ -5,6 +5,10 @@ public class CallbackInstance {
     private Callback cb;
     private String cbString;
 
+    private String getCbString() {
+        return cbString;
+    }
+
     public CallbackInstance(Callback cb) {
         this.cb = cb;
     }
@@ -12,7 +16,7 @@ public class CallbackInstance {
     public void setCbString(String cbString) {
         this.cbString = cbString;
         if (cb != null) {
-            cb.callback("我是回调数据：" + cbString);
+            cb.callback("我是回调数据：" + this.getCbString());
         }
     }
 }
