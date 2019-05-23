@@ -5,12 +5,12 @@ public class CallbackInstance {
     private Callback cb;
     private String cbString;
 
-    private String getCbString() {
-        return cbString;
-    }
-
     public CallbackInstance(Callback cb) {
         this.cb = cb;
+    }
+
+    private String getCbString() {
+        return cbString;
     }
 
     public void setCbString(String cbString) {

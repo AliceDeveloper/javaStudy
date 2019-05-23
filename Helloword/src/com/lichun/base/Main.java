@@ -7,7 +7,6 @@ public class Main {
     public static void main(String[] args) {
 
         Person p = new Person();
-        System.out.println(Person.title);
         System.out.println(p.id);
         p.name = "人";
         p.say();
@@ -18,10 +17,10 @@ public class Main {
         t.name = "老师";
         t.say();
         t.say("真的不想说");
-        t.sayHi();
+        t.new InnerClass("内部类来了");
+        new Teacher.StaticInnerClass("静态内部类来了");
 
         new Student(t);
-        new Parents(t);
         t.setHomework("我是语文作业");
         t.setHomework("我是数学作业");
 

@@ -3,29 +3,28 @@ package com.lichun.base.obj;
 import java.util.ArrayList;
 import java.util.List;
 
-// 使用关键字extends，子类可以继承父类的除private属性外所有的属性。
-// 继承基本类和抽象类用extends关键字，实现接口类的继承用implements关键字。
-public class Teacher extends Person implements Hi {
+public class Teacher extends Person {
+
+    // 继承使用关键字extends，构造方法不能被继承
+    // 实现接口使用关键字implements
 
     // 重写是子类对父类的允许访问的方法的实现过程进行重新编写，返回值和形参都不能改变
-    // 异常可以减少或删除，一定不能抛出新的或者更广的异常
-    // 访问一定不能做更严格的限制（可以降低限制）
     public void say() {
         super.say();
-        System.out.println("我是老师，我啥也不想说");
-    }
-    // 重载是在一个类里面，方法名字相同，而参数不同，返回类型可以相同也可以不同
-    public void say(String var) {
-        System.out.println("我是老师，" + var);
     }
 
-    // 多态：类似于OC的多态
+    // 重载是在一个类里面，方法名字相同，而参数不同，返回类型可以相同也可以不同
+    public void say(String var) {
+        System.out.println(name + "：" + var);
+    }
 
     // 抽象类：public abstract class Hi {}
     // 抽象方法：public abstract void function();
     // 注意：
-    // 如果一个类包含抽象方法，那么该类必须是抽象类
-    // 任何子类必须重写父类的抽象方法，或者声明自身为抽象类
+    // 如果类包含抽象方法，那么该类必须是抽象类
+    // 集成抽象类必须重写父类的抽象方法，或者声明自身为抽象类
+    // 抽象类不能被实例化
+    // 抽象类不能声明为final
 
     // 接口：interface Hi {}
     // 接口是隐式抽象的，接口中每一个方法也是隐式抽象的；
@@ -33,33 +32,38 @@ public class Teacher extends Person implements Hi {
     // 接口不能包含成员变量，除了static和final变量
     // 接口不能有构造器
     // 接口中的方法都是公有的
-    @Override
-    public void sayHi() {
-        System.out.println("我是老师，sayHi");
-    }
 
-    // Java使用包package这种机制是为了防止命名冲突，访问控制，提供搜索和定位类、接口、枚举和注释等
+    // 类中内部类
+    public class InnerClass {
+        public InnerClass(String string) {
+            System.out.println("内部类：" + string);
+        }
+    }
+    // 类中静态内部类，创建静态内部类对象不需要依赖外部类的对象
+    public static class StaticInnerClass {
+        public StaticInnerClass(String string) {
+            System.out.println("静态内部类：" + string);
+        }
+    }
+    // 方法中内部类，不能使用非final修饰的变量
 
     // Java观察者模式
     private String homework;
     private List<HomeworkObserver> observers = new ArrayList<>();
 
-    public String getHomework() {
+    String getHomework() {
         return homework;
     }
 
     public void setHomework(String homework) {
         this.homework = homework;
-        notifyAllObservers();
-    }
-
-    public void attach(HomeworkObserver homeworkObserver) {
-        observers.add(homeworkObserver);
-    }
-
-    public void notifyAllObservers() {
         for (HomeworkObserver observer : observers) {
             observer.update();
         }
     }
+
+    void attach(HomeworkObserver homeworkObserver) {
+        observers.add(homeworkObserver);
+    }
 }
+

@@ -8,46 +8,51 @@ import java.util.regex.Pattern;
 
 public class Person {
 
-    // 创建类方法和类变量
-    public static String title = "程序汪";
-    // 常量
-    public final String id = "写代码的狗子";
-    // 所有类可见
-    public String name;
-    // 该类和子类可见
-    // protected String hobby = "爱好：汪汪汪...";
-    // 仅在该类可见
-    // private String log = "";
-    // instanceof 检查该对象是否是一个特定类型
+    /**
+     * // 单例模式
+     * private static Person instance = null;
+     * // 构造方法私有化
+     * private Person() {}
+     * public static Person shareInstance() {
+     * if (instance == null) {
+     * instance = new Person();
+     * }
+     * return  instance;
+     * }
+     */
+    // 静态代码块在代码块之前运行
+    // 代码块在构造方法之前运行
 
+    // 读取控制台输入
+    // Scanner in = new Scanner(System.in);
+    // String str = in.next();
+
+    // 属性通常是私有的，使用set/get方法设值和取值
+    // static 修饰静态属性、静态方法，生命周期为整个程序的生命周期
+    // final：修饰类的时候不能被继承，修饰方法的时候不能被重写，修饰属性的时候为常量(直接赋值和构造方式赋值)
+    public final String id = "写代码的狗子";
+    public String name;
+
+    // 创建类方法和类变量
     public void say() {
-        System.out.println("我是" + name);
+        System.out.println(name);
     }
 
     // 日期时间
     public void dateTime() {
         Date dateNow = new Date();
-        System.out.println(dateNow);
         System.out.println(dateNow.getTime());
-        System.out.println(dateNow.before(dateNow));
-        System.out.println(dateNow.after(dateNow));
         // 格式化日期
-        System.out.println(String.format("%tc", dateNow));
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         System.out.println(ft.format(dateNow));
+        System.out.println(String.format("%tc", dateNow));
         try {
             // 睡眠 1s
             Thread.sleep(1000);
         } catch (Exception e) {
             System.out.println("Got an exception!");
         }
-        Calendar c = Calendar.getInstance();
-        System.out.println(c.get(Calendar.YEAR));
-        System.out.println(c.get(Calendar.MONTH));
-        System.out.println(c.get(Calendar.DATE));
-        System.out.println(c.get(Calendar.HOUR));
-        System.out.println(c.get(Calendar.MINUTE));
-        System.out.println(c.get(Calendar.SECOND));
+        System.out.println(Calendar.getInstance());
     }
 
     public void regex() {
@@ -57,8 +62,8 @@ public class Person {
         Pattern p = Pattern.compile("\\bcat\\b");
         Matcher m = p.matcher("cat cat cat catch cat");
         while (m.find()) {
-            System.out.println("start(): "+m.start());
-            System.out.println("end(): "+m.end());
+            System.out.println("start(): " + m.start());
+            System.out.println("end(): " + m.end());
         }
         // matches 和 lookingAt 方法都用来尝试匹配一个输入序列模式。matcher 要求整个序列都匹配，lookingAt 不要求。
         p = Pattern.compile("foo");
@@ -66,6 +71,4 @@ public class Person {
         System.out.println(m.matches());
         System.out.println(m.lookingAt());
     }
-
-    // Stream File IO Scanner
 }
