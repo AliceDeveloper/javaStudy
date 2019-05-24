@@ -10,7 +10,6 @@ public class Main {
         System.out.println(p.id);
         p.name = "人";
         p.say();
-        p.dateTime();
         p.regex();
 
         Teacher t = new Teacher();

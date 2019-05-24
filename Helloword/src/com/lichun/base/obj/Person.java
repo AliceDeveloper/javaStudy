@@ -1,8 +1,5 @@
 package com.lichun.base.obj;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,26 +30,8 @@ public class Person {
     public final String id = "写代码的狗子";
     public String name;
 
-    // 创建类方法和类变量
     public void say() {
         System.out.println(name);
-    }
-
-    // 日期时间
-    public void dateTime() {
-        Date dateNow = new Date();
-        System.out.println(dateNow.getTime());
-        // 格式化日期
-        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        System.out.println(ft.format(dateNow));
-        System.out.println(String.format("%tc", dateNow));
-        try {
-            // 睡眠 1s
-            Thread.sleep(1000);
-        } catch (Exception e) {
-            System.out.println("Got an exception!");
-        }
-        System.out.println(Calendar.getInstance());
     }
 
     public void regex() {
