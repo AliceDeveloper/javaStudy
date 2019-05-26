@@ -1,7 +1,6 @@
 package com.lichun.senior;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -22,8 +21,7 @@ public class Main {
 
         // 国际化 Locale
         // 获取资源文件 ResourceBundle rb = ResourceBundle.getBundle("filePath", locale);
-        // 数学函数 Math
-        // 伪随机数 Random
+        // 数学函数 Math：Math.PI、Math.random()
         // 数组 Arrays
         int[] nums = {1, 3, 2, 5, 6};
         Arrays.sort(nums);
@@ -42,7 +40,7 @@ public class Main {
             System.out.println("Got an exception!");
         }
         // 对象比较器 Comparable接口，在类中实现 Comparable 的 compareTo() 方法
-        // 对象克隆器 Cloneable接口，重写 Cloneable 的 clone() 方法
+        // 对象克隆器 Cloneable接口，在类中重写 Cloneable 的 clone() 方法
 
         // 文件 File
         String path = "/Users/lichun/javaStudy/Helloword/src/";
@@ -59,6 +57,14 @@ public class Main {
         }
         // 递归查找文件
         findFile(new File(path), ".java");
+
+        // 注意：如果是文本类文件建议使用字符流，如果是非文本类文件建议使用字节流
+        // 字节输出流：OutputStream 字节输入流：FileInputStream
+        write();
+        read();
+        // 字符输出流：Writer 字符输入流：Reader
+        writer();
+        reader();
     }
 
     /**
@@ -67,7 +73,7 @@ public class Main {
      * @param target 文件
      * @param ext    后缀名
      */
-    public static void findFile(File target, String ext) {
+    private static void findFile(File target, String ext) {
         if (target != null) {
             if (target.isDirectory()) {
                 File[] files = target.listFiles();
@@ -82,6 +88,74 @@ public class Main {
                     System.out.println(path);
                 }
             }
+        }
+    }
+
+    /**
+     * 字节输出流
+     */
+    private static void write() {
+        File file = new File("/Users/lichun/Desktop/OutputStream.txt");
+        try {
+            OutputStream out = new FileOutputStream(file);
+            out.write("字节输出流".getBytes());
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 字节输入流
+     */
+    private static void read() {
+        File file = new File("/Users/lichun/Desktop/OutputStream.txt");
+        try {
+            InputStream in = new FileInputStream(file);
+            byte[] bytes = new byte[1024 * 1024];
+            int len;
+            StringBuilder sb = new StringBuilder();
+            while ((len = in.read(bytes)) != -1) {
+                sb.append(new String(bytes, 0, len));
+            }
+            in.close();
+            System.out.println("字节输入流：" + sb);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 字符输出流
+     */
+    private static void writer() {
+        File file = new File("/Users/lichun/Desktop/Writer.txt");
+        try {
+            Writer out = new FileWriter(file);
+            out.write("字符输出流,字符输出流");
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 字符输入流
+     */
+    private static void reader() {
+        File file = new File("/Users/lichun/Desktop/Writer.txt");
+        try {
+            Reader in = new FileReader(file);
+            char[] cs = new char[2];
+            int len;
+            StringBuilder sb = new StringBuilder();
+            while ((len = in.read(cs)) != -1) {
+                sb.append(new String(cs, 0, len));
+            }
+            in.close();
+            System.out.println("字符输入流：" + sb);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
