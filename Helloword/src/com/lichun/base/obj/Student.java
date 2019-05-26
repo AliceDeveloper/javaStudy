@@ -9,6 +9,6 @@ public class Student extends HomeworkObserver {
 
     @Override
     public void update() {
-        System.out.println("学生：收到作业：" + this.teacher.getHomework());
+        System.out.println("学生收到作业：" + this.teacher.getHomework());
     }
 }

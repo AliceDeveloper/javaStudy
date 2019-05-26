@@ -5,6 +5,21 @@ import java.util.List;
 
 public class Teacher extends Person {
 
+    /**
+     * // 单例模式
+     * private static Person instance = null;
+     * <p>
+     * // 构造方法私有化
+     * private Person() {
+     * }
+     * <p>
+     * public static Person shareInstance() {
+     * if (instance == null) {
+     * instance = new Person();
+     * }
+     * return instance;
+     * }
+     */
     // 继承使用关键字extends，构造方法不能被继承
     // 实现接口使用关键字implements
 
@@ -18,15 +33,14 @@ public class Teacher extends Person {
         System.out.println(name + "：" + var);
     }
 
-    // 抽象类：public abstract class Hi {}
-    // 抽象方法：public abstract void function();
+    // 抽象类和抽象方法修饰符：abstract
     // 注意：
     // 如果类包含抽象方法，那么该类必须是抽象类
-    // 集成抽象类必须重写父类的抽象方法，或者声明自身为抽象类
+    // 继承抽象类必须重写父类的抽象方法，或者声明自身为抽象类
     // 抽象类不能被实例化
     // 抽象类不能声明为final
 
-    // 接口：interface Hi {}
+    // 接口修饰符：interface
     // 接口是隐式抽象的，接口中每一个方法也是隐式抽象的；
     // 在Java中，类的多重继承是不合法，但接口允许多重继承
     // 接口不能包含成员变量，除了static和final变量
@@ -39,12 +53,16 @@ public class Teacher extends Person {
             System.out.println("内部类：" + string);
         }
     }
+
     // 类中静态内部类，创建静态内部类对象不需要依赖外部类的对象
     public static class StaticInnerClass {
         public StaticInnerClass(String string) {
             System.out.println("静态内部类：" + string);
         }
     }
+    // Teacher t = new Teacher();
+    // t.new InnerClass("内部类来了");
+    // new Teacher.StaticInnerClass("静态内部类来了");
     // 方法中内部类，不能使用非final修饰的变量
 
     // Java观察者模式

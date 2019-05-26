@@ -2,15 +2,12 @@ package com.lichun.senior;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        final String path = "/Users/cdct/Desktop/javaStudy/Helloword/src/";
 
         StringBuffer sBuffer = new StringBuffer();
         for (int i = 0; i < 10; i++) {
@@ -31,7 +28,7 @@ public class Main {
         int[] nums = {1, 3, 2, 5, 6};
         Arrays.sort(nums);
         // 二分查找法，查找速度快，要求数组是有序的
-        System.out.println(Arrays.binarySearch(nums, 6));
+        System.out.println(Arrays.binarySearch(nums, 3));
         // 日期时间 Date
         Date now = new Date();
         System.out.println(now.getTime());
@@ -44,18 +41,15 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Got an exception!");
         }
-        // 对象比较器 Comparable接口，Comparator接口
-        // 在类中实现 Comparable 的 compareTo() 方法
-        // 对象克隆器 Cloneable接口
-        // 重写 Cloneable 的 clone() 方法
+        // 对象比较器 Comparable接口，在类中实现 Comparable 的 compareTo() 方法
+        // 对象克隆器 Cloneable接口，重写 Cloneable 的 clone() 方法
 
         // 文件 File
+        String path = "/Users/lichun/javaStudy/Helloword/src/";
         File file = new File(path + "source/image.jpg");
         if (file.exists()) {
             System.out.println("文件大小：" + file.length());
-            System.out.println("文件最后更新时间：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(file.lastModified()));
-            System.out.println("文件绝对路径：" + file.getAbsolutePath());
-            System.out.println("文件是否是目录：" + file.isDirectory());
+            System.out.println("文件最后更新时间：" + file.lastModified());
         } else {
             try {
                 file.createNewFile();
@@ -63,13 +57,15 @@ public class Main {
                 e.printStackTrace();
             }
         }
+        // 递归查找文件
         findFile(new File(path), ".java");
     }
 
     /**
      * 递归查找文件
+     *
      * @param target 文件
-     * @param ext 后缀名
+     * @param ext    后缀名
      */
     public static void findFile(File target, String ext) {
         if (target != null) {
