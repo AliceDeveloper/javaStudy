@@ -10,7 +10,6 @@ public class Main {
         System.out.println(p.id);
         p.name = "人";
         p.say();
-        p.regex();
 
         Teacher t = new Teacher();
         t.name = "老师";
